@@ -1,0 +1,59 @@
+osboxes@osboxes:~/Documents/Daemon$ g++ -o DisksInfoDaemon.bin DisksInfoDaemon.cpp
+^[[D^[[D^C
+osboxes@osboxes:~/Documents/Daemon$ g++ -o DisksInfoDaemon.bin DisksInfoDaemon.cpp
+osboxes@osboxes:~/Documents/Daemon$ sudo cp ~/Documents/DisksInfoDaemon.service  etc/systemd/system/
+[sudo] password for osboxes: 
+cp: cannot stat '/home/osboxes/Documents/DisksInfoDaemon.service': No such file or directory
+osboxes@osboxes:~/Documents/Daemon$ sudo cp ~/Documents/Daemon/DisksInfoDaemon.service  etc/systemd/system/
+cp: cannot create regular file 'etc/systemd/system/': No such file or directory
+osboxes@osboxes:~/Documents/Daemon$ sudo cp ~/Documents/Daemon/DisksInfoDaemon.service /etc/systemd/system/
+osboxes@osboxes:~/Documents/Daemon$ sudo systemctl enable DisksInfoDaemon.service
+Created symlink from /etc/systemd/system/multi-user.target.wants/DisksInfoDaemon.service to /etc/systemd/system/DisksInfoDaemon.service.
+osboxes@osboxes:~/Documents/Daemon$ sudo systemctl start DisksInfoDaemon
+osboxes@osboxes:~/Documents/Daemon$ sudo systemctl status DisksInfoDaemon
+● DisksInfoDaemon.service - Information about disks
+   Loaded: loaded (/etc/systemd/system/DisksInfoDaemon.service; enabled; vendor 
+   Active: activating (auto-restart) (Result: exit-code) since Tue 2017-05-30 07
+  Process: 2943 ExecStart=/home/osboxes/Documents/DisksInfoDaemon.bin (code=exit
+ Main PID: 2943 (code=exited, status=203/EXEC)
+
+osboxes@osboxes:~/Documents/Daemon$ sudo cp ~/Documents/Daemon/DisksInfoDaemon.service /etc/systemd/system/
+osboxes@osboxes:~/Documents/Daemon$ sudo systemctl enable DisksInfoDaemon.service
+osboxes@osboxes:~/Documents/Daemon$ sudo systemctl daemon-reload DisksInfoDaemon 
+Too many arguments.
+osboxes@osboxes:~/Documents/Daemon$ sudo systemctl daemon-reload
+osboxes@osboxes:~/Documents/Daemon$ sudo systemctl status DisksInfoDaemon● DisksInfoDaemon.service - Information about disks
+   Loaded: loaded (/etc/systemd/system/DisksInfoDaemon.service; enabled; vendor 
+   Active: active (running) since Tue 2017-05-30 07:05:20 BST; 1min 6s ago
+ Main PID: 3000 (DisksInfoDaemon)
+   CGroup: /system.slice/DisksInfoDaemon.service
+           └─3000 /home/osboxes/Documents/Daemon/DisksInfoDaemon.bin
+
+May 30 07:05:20 osboxes systemd[1]: DisksInfoDaemon.service: Service hold-off ti
+May 30 07:05:20 osboxes systemd[1]: Stopped Information about disks.
+May 30 07:05:20 osboxes systemd[1]: Started Information about disks.
+lines 1-10/10 (END)
+osboxes@osboxes:~/Documents/Daemon$ sudo systemctl stop DisksInfoDaemon
+osboxes@osboxes:~/Documents/Daemon$ sudo systemctl disable DisksInfoDaemon
+Removed symlink /etc/systemd/system/multi-user.target.wants/DisksInfoDaemon.service.
+osboxes@osboxes:~/Documents/Daemon$ ln -s /dev/null /etc/systemd/system/DisksInfoDaemon.service
+ln: failed to create symbolic link '/etc/systemd/system/DisksInfoDaemon.service': File exists
+osboxes@osboxes:~/Documents/Daemon$ rm -s /dev/null /etc/systemd/system/DisksInfoDaemon.service
+rm: invalid option -- 's'
+Try 'rm --help' for more information.
+osboxes@osboxes:~/Documents/Daemon$ sudo systemctl status DisksInfoDaemon● DisksInfoDaemon.service - Information about disks
+   Loaded: loaded (/etc/systemd/system/DisksInfoDaemon.service; disabled; vendor
+   Active: inactive (dead)
+
+May 30 07:05:15 osboxes systemd[1]: Started Information about disks.
+May 30 07:05:15 osboxes systemd[2980]: DisksInfoDaemon.service: Failed at step E
+May 30 07:05:15 osboxes systemd[1]: DisksInfoDaemon.service: Main process exited
+May 30 07:05:15 osboxes systemd[1]: DisksInfoDaemon.service: Unit entered failed
+May 30 07:05:15 osboxes systemd[1]: DisksInfoDaemon.service: Failed with result 
+May 30 07:05:20 osboxes systemd[1]: DisksInfoDaemon.service: Service hold-off ti
+May 30 07:05:20 osboxes systemd[1]: Stopped Information about disks.
+May 30 07:05:20 osboxes systemd[1]: Started Information about disks.
+May 30 07:07:22 osboxes systemd[1]: Stopping Information about disks...
+May 30 07:07:22 osboxes systemd[1]: Stopped Information about disks.
+lines 1-14/14 (END)
+

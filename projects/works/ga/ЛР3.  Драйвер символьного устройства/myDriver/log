@@ -1,0 +1,537 @@
+osboxes@osboxes:~/Documents/myDriver$ make
+make -C /lib/modules/4.8.0-53-generic/build M=/home/osboxes/Documents/myDriver modules
+make[1]: Entering directory '/usr/src/linux-headers-4.8.0-53-generic'
+Building with KERNELRELEASE = 4.8.0-53-generic
+  CC [M]  /home/osboxes/Documents/myDriver/driverTest.o
+  Building modules, stage 2.
+Building with KERNELRELEASE = 4.8.0-53-generic
+  MODPOST 1 modules
+  CC      /home/osboxes/Documents/myDriver/driverTest.mod.o
+  LD [M]  /home/osboxes/Documents/myDriver/driverTest.ko
+make[1]: Leaving directory '/usr/src/linux-headers-4.8.0-53-generic'
+osboxes@osboxes:~/Documents/myDriver$ sudo insmod driverTest.ko
+[sudo] password for osboxes: 
+osboxes@osboxes:~/Documents/myDriver$ lsmod | grep driver
+driverTest             16384  0
+osboxes@osboxes:~/Documents/myDriver$ uname -r
+4.8.0-53-generic
+osboxes@osboxes:~/Documents/myDriver$ cd /dev
+osboxes@osboxes:/dev$ ls -l
+total 0
+crw-------  1 root root     10, 175 May 27 16:03 agpgart
+crw-------  1 root root     10, 235 May 27 16:03 autofs
+drwxr-xr-x  2 root root         300 May 27 16:03 block
+drwxr-xr-x  2 root root          80 May 27 16:03 bsg
+crw-------  1 root root     10, 234 May 27 16:03 btrfs-control
+drwxr-xr-x  3 root root          60 May 27 16:03 bus
+lrwxrwxrwx  1 root root           3 May 27 16:03 cdrom -> sr0
+lrwxrwxrwx  1 root root           3 May 27 16:03 cdrw -> sr0
+drwxr-xr-x  2 root root        3660 May 29 16:02 char
+crw-------  1 root root    245,   0 May 29 16:02 chrnull
+crw-------  1 root root      5,   1 May 27 16:03 console
+lrwxrwxrwx  1 root root          11 May 27 16:03 core -> /proc/kcore
+drwxr-xr-x  2 root root          60 May 27 16:03 cpu
+crw-------  1 root root     10,  59 May 27 16:03 cpu_dma_latency
+crw-------  1 root root     10, 203 May 27 16:03 cuse
+drwxr-xr-x  6 root root         120 May 27 16:03 disk
+crw-rw----+ 1 root audio    14,   9 May 27 16:03 dmmidi
+drwxr-xr-x  2 root root         100 May 27 16:03 dri
+lrwxrwxrwx  1 root root           3 May 27 16:03 dvd -> sr0
+crw-------  1 root root     10,  61 May 27 16:03 ecryptfs
+crw-rw----  1 root video    29,   0 May 27 16:03 fb0
+lrwxrwxrwx  1 root root          13 May 27 16:03 fd -> /proc/self/fd
+crw-rw-rw-  1 root root      1,   7 May 27 16:03 full
+crw-rw-rw-  1 root root     10, 229 May 27 16:03 fuse
+crw-------  1 root root    246,   0 May 27 16:03 hidraw0
+crw-------  1 root root     10, 228 May 27 16:03 hpet
+drwxr-xr-x  2 root root           0 May 27 16:03 hugepages
+crw-------  1 root root     10, 183 May 27 16:03 hwrng
+lrwxrwxrwx  1 root root          25 May 27 16:03 initctl -> /run/systemd/initctl/fifo
+drwxr-xr-x  4 root root         260 May 27 16:03 input
+crw-r--r--  1 root root      1,  11 May 27 16:03 kmsg
+drwxr-xr-x  2 root root          60 May 27 16:03 lightnvm
+lrwxrwxrwx  1 root root          28 May 27 16:03 log -> /run/systemd/journal/dev-log
+brw-rw----  1 root disk      7,   0 May 27 16:03 loop0
+brw-rw----  1 root disk      7,   1 May 27 16:03 loop1
+brw-rw----  1 root disk      7,   2 May 27 16:03 loop2
+brw-rw----  1 root disk      7,   3 May 27 16:03 loop3
+brw-rw----  1 root disk      7,   4 May 27 16:03 loop4
+brw-rw----  1 root disk      7,   5 May 27 16:03 loop5
+brw-rw----  1 root disk      7,   6 May 27 16:03 loop6
+brw-rw----  1 root disk      7,   7 May 27 16:03 loop7
+crw-rw----  1 root disk     10, 237 May 27 16:03 loop-control
+drwxr-xr-x  2 root root          60 May 27 16:03 mapper
+crw-------  1 root root     10, 227 May 27 16:03 mcelog
+crw-r-----  1 root kmem      1,   1 May 27 16:03 mem
+crw-------  1 root root     10,  56 May 27 16:03 memory_bandwidth
+crw-rw----+ 1 root audio    14,   2 May 27 16:03 midi
+drwxrwxrwt  2 root root          40 May 27 16:03 mqueue
+drwxr-xr-x  2 root root          60 May 27 16:03 net
+crw-------  1 root root     10,  58 May 27 16:03 network_latency
+crw-------  1 root root     10,  57 May 27 16:03 network_throughput
+crw-rw-rw-  1 root root      1,   3 May 27 16:03 null
+crw-r-----  1 root kmem      1,   4 May 27 16:03 port
+crw-------  1 root root    108,   0 May 27 16:03 ppp
+crw-------  1 root root     10,   1 May 27 16:03 psaux
+crw-rw-rw-  1 root tty       5,   2 May 29 18:47 ptmx
+drwxr-xr-x  2 root root           0 May 27 16:03 pts
+crw-rw-rw-  1 root root      1,   8 May 27 16:03 random
+crw-rw-r--+ 1 root netdev   10,  62 May 27 16:03 rfkill
+lrwxrwxrwx  1 root root           4 May 27 16:03 rtc -> rtc0
+crw-------  1 root root    250,   0 May 27 16:03 rtc0
+brw-rw----  1 root disk      8,   0 May 27 16:03 sda
+brw-rw----  1 root disk      8,   1 May 27 16:03 sda1
+brw-rw----  1 root disk      8,   2 May 27 16:03 sda2
+brw-rw----  1 root disk      8,   5 May 27 16:03 sda5
+crw-rw----+ 1 root cdrom    21,   0 May 27 16:03 sg0
+crw-rw----  1 root disk     21,   1 May 27 16:03 sg1
+drwxrwxrwt  2 root root         220 May 29 18:43 shm
+crw-------  1 root root     10, 231 May 27 16:03 snapshot
+drwxr-xr-x  3 root root         200 May 27 16:03 snd
+brw-rw----+ 1 root cdrom    11,   0 May 27 16:03 sr0
+lrwxrwxrwx  1 root root          15 May 27 16:03 stderr -> /proc/self/fd/2
+lrwxrwxrwx  1 root root          15 May 27 16:03 stdin -> /proc/self/fd/0
+lrwxrwxrwx  1 root root          15 May 27 16:03 stdout -> /proc/self/fd/1
+crw-rw-rw-  1 root tty       5,   0 May 29 18:39 tty
+crw--w----  1 root tty       4,   0 May 27 16:03 tty0
+crw--w----  1 root tty       4,   1 May 27 16:04 tty1
+crw--w----  1 root tty       4,  10 May 27 16:03 tty10
+crw--w----  1 root tty       4,  11 May 27 16:03 tty11
+crw--w----  1 root tty       4,  12 May 27 16:03 tty12
+crw--w----  1 root tty       4,  13 May 27 16:03 tty13
+crw--w----  1 root tty       4,  14 May 27 16:03 tty14
+crw--w----  1 root tty       4,  15 May 27 16:03 tty15
+crw--w----  1 root tty       4,  16 May 27 16:03 tty16
+crw--w----  1 root tty       4,  17 May 27 16:03 tty17
+crw--w----  1 root tty       4,  18 May 27 16:03 tty18
+crw--w----  1 root tty       4,  19 May 27 16:03 tty19
+crw--w----  1 root tty       4,   2 May 27 16:03 tty2
+crw--w----  1 root tty       4,  20 May 27 16:03 tty20
+crw--w----  1 root tty       4,  21 May 27 16:03 tty21
+crw--w----  1 root tty       4,  22 May 27 16:03 tty22
+crw--w----  1 root tty       4,  23 May 27 16:03 tty23
+crw--w----  1 root tty       4,  24 May 27 16:03 tty24
+crw--w----  1 root tty       4,  25 May 27 16:03 tty25
+crw--w----  1 root tty       4,  26 May 27 16:03 tty26
+crw--w----  1 root tty       4,  27 May 27 16:03 tty27
+crw--w----  1 root tty       4,  28 May 27 16:03 tty28
+crw--w----  1 root tty       4,  29 May 27 16:03 tty29
+crw--w----  1 root tty       4,   3 May 27 16:03 tty3
+crw--w----  1 root tty       4,  30 May 27 16:03 tty30
+crw--w----  1 root tty       4,  31 May 27 16:03 tty31
+crw--w----  1 root tty       4,  32 May 27 16:03 tty32
+crw--w----  1 root tty       4,  33 May 27 16:03 tty33
+crw--w----  1 root tty       4,  34 May 27 16:03 tty34
+crw--w----  1 root tty       4,  35 May 27 16:03 tty35
+crw--w----  1 root tty       4,  36 May 27 16:03 tty36
+crw--w----  1 root tty       4,  37 May 27 16:03 tty37
+crw--w----  1 root tty       4,  38 May 27 16:03 tty38
+crw--w----  1 root tty       4,  39 May 27 16:03 tty39
+crw--w----  1 root tty       4,   4 May 27 16:03 tty4
+crw--w----  1 root tty       4,  40 May 27 16:03 tty40
+crw--w----  1 root tty       4,  41 May 27 16:03 tty41
+crw--w----  1 root tty       4,  42 May 27 16:03 tty42
+crw--w----  1 root tty       4,  43 May 27 16:03 tty43
+crw--w----  1 root tty       4,  44 May 27 16:03 tty44
+crw--w----  1 root tty       4,  45 May 27 16:03 tty45
+crw--w----  1 root tty       4,  46 May 27 16:03 tty46
+crw--w----  1 root tty       4,  47 May 27 16:03 tty47
+crw--w----  1 root tty       4,  48 May 27 16:03 tty48
+crw--w----  1 root tty       4,  49 May 27 16:03 tty49
+crw--w----  1 root tty       4,   5 May 27 16:03 tty5
+crw--w----  1 root tty       4,  50 May 27 16:03 tty50
+crw--w----  1 root tty       4,  51 May 27 16:03 tty51
+crw--w----  1 root tty       4,  52 May 27 16:03 tty52
+crw--w----  1 root tty       4,  53 May 27 16:03 tty53
+crw--w----  1 root tty       4,  54 May 27 16:03 tty54
+crw--w----  1 root tty       4,  55 May 27 16:03 tty55
+crw--w----  1 root tty       4,  56 May 27 16:03 tty56
+crw--w----  1 root tty       4,  57 May 27 16:03 tty57
+crw--w----  1 root tty       4,  58 May 27 16:03 tty58
+crw--w----  1 root tty       4,  59 May 27 16:03 tty59
+crw--w----  1 root tty       4,   6 May 27 16:03 tty6
+crw--w----  1 root tty       4,  60 May 27 16:03 tty60
+crw--w----  1 root tty       4,  61 May 27 16:03 tty61
+crw--w----  1 root tty       4,  62 May 27 16:03 tty62
+crw--w----  1 root tty       4,  63 May 27 16:03 tty63
+crw--w----  1 root tty       4,   7 May 27 16:03 tty7
+crw--w----  1 root tty       4,   8 May 27 16:03 tty8
+crw--w----  1 root tty       4,   9 May 27 16:03 tty9
+crw-------  1 root root      5,   3 May 27 16:03 ttyprintk
+crw-rw----  1 root dialout   4,  64 May 27 16:03 ttyS0
+crw-rw----  1 root dialout   4,  65 May 27 16:03 ttyS1
+crw-rw----  1 root dialout   4,  74 May 27 16:03 ttyS10
+crw-rw----  1 root dialout   4,  75 May 27 16:03 ttyS11
+crw-rw----  1 root dialout   4,  76 May 27 16:03 ttyS12
+crw-rw----  1 root dialout   4,  77 May 27 16:03 ttyS13
+crw-rw----  1 root dialout   4,  78 May 27 16:03 ttyS14
+crw-rw----  1 root dialout   4,  79 May 27 16:03 ttyS15
+crw-rw----  1 root dialout   4,  80 May 27 16:03 ttyS16
+crw-rw----  1 root dialout   4,  81 May 27 16:03 ttyS17
+crw-rw----  1 root dialout   4,  82 May 27 16:03 ttyS18
+crw-rw----  1 root dialout   4,  83 May 27 16:03 ttyS19
+crw-rw----  1 root dialout   4,  66 May 27 16:03 ttyS2
+crw-rw----  1 root dialout   4,  84 May 27 16:03 ttyS20
+crw-rw----  1 root dialout   4,  85 May 27 16:03 ttyS21
+crw-rw----  1 root dialout   4,  86 May 27 16:03 ttyS22
+crw-rw----  1 root dialout   4,  87 May 27 16:03 ttyS23
+crw-rw----  1 root dialout   4,  88 May 27 16:03 ttyS24
+crw-rw----  1 root dialout   4,  89 May 27 16:03 ttyS25
+crw-rw----  1 root dialout   4,  90 May 27 16:03 ttyS26
+crw-rw----  1 root dialout   4,  91 May 27 16:03 ttyS27
+crw-rw----  1 root dialout   4,  92 May 27 16:03 ttyS28
+crw-rw----  1 root dialout   4,  93 May 27 16:03 ttyS29
+crw-rw----  1 root dialout   4,  67 May 27 16:03 ttyS3
+crw-rw----  1 root dialout   4,  94 May 27 16:03 ttyS30
+crw-rw----  1 root dialout   4,  95 May 27 16:03 ttyS31
+crw-rw----  1 root dialout   4,  68 May 27 16:03 ttyS4
+crw-rw----  1 root dialout   4,  69 May 27 16:03 ttyS5
+crw-rw----  1 root dialout   4,  70 May 27 16:03 ttyS6
+crw-rw----  1 root dialout   4,  71 May 27 16:03 ttyS7
+crw-rw----  1 root dialout   4,  72 May 27 16:03 ttyS8
+crw-rw----  1 root dialout   4,  73 May 27 16:03 ttyS9
+crw-------  1 root root     10, 239 May 27 16:03 uhid
+crw-------  1 root root     10, 223 May 27 16:03 uinput
+crw-rw-rw-  1 root root      1,   9 May 27 16:03 urandom
+crw-------  1 root root     10, 240 May 27 16:03 userio
+crw-rw----  1 root tty       7,   0 May 27 16:03 vcs
+crw-rw----  1 root tty       7,   1 May 27 16:03 vcs1
+crw-rw----  1 root tty       7,   2 May 27 16:03 vcs2
+crw-rw----  1 root tty       7,   3 May 27 16:03 vcs3
+crw-rw----  1 root tty       7,   4 May 27 16:03 vcs4
+crw-rw----  1 root tty       7,   5 May 27 16:03 vcs5
+crw-rw----  1 root tty       7,   6 May 27 16:03 vcs6
+crw-rw----  1 root tty       7,   7 May 27 16:04 vcs7
+crw-rw----  1 root tty       7, 128 May 27 16:03 vcsa
+crw-rw----  1 root tty       7, 129 May 27 16:03 vcsa1
+crw-rw----  1 root tty       7, 130 May 27 16:03 vcsa2
+crw-rw----  1 root tty       7, 131 May 27 16:03 vcsa3
+crw-rw----  1 root tty       7, 132 May 27 16:03 vcsa4
+crw-rw----  1 root tty       7, 133 May 27 16:03 vcsa5
+crw-rw----  1 root tty       7, 134 May 27 16:03 vcsa6
+crw-rw----  1 root tty       7, 135 May 27 16:04 vcsa7
+drwxr-xr-x  2 root root          60 May 27 16:03 vfio
+crw-------  1 root root     10,  63 May 27 16:03 vga_arbiter
+crw-------  1 root root     10, 137 May 27 16:03 vhci
+crw-------  1 root root     10, 238 May 27 16:03 vhost-net
+crw-------  1 root root     10,  55 May 27 16:03 vmci
+crw-------  1 root root     10,  54 May 27 16:04 vsock
+crw-rw-rw-  1 root root      1,   5 May 27 16:03 zero
+osboxes@osboxes:/dev$ cat /proc/devices
+Character devices:
+  1 mem
+  4 /dev/vc/0
+  4 tty
+  4 ttyS
+  5 /dev/tty
+  5 /dev/console
+  5 /dev/ptmx
+  5 ttyprintk
+  6 lp
+  7 vcs
+ 10 misc
+ 13 input
+ 14 sound/midi
+ 14 sound/dmmidi
+ 21 sg
+ 29 fb
+ 89 i2c
+ 99 ppdev
+108 ppp
+116 alsa
+128 ptm
+136 pts
+180 usb
+189 usb_device
+204 ttyMAX
+226 drm
+245 chr_test_driver
+246 hidraw
+247 aux
+248 bsg
+249 watchdog
+250 rtc
+251 dimmctl
+252 ndctl
+253 tpm
+254 gpiochip
+
+Block devices:
+259 blkext
+  7 loop
+  8 sd
+  9 md
+ 11 sr
+ 65 sd
+ 66 sd
+ 67 sd
+ 68 sd
+ 69 sd
+ 70 sd
+ 71 sd
+128 sd
+129 sd
+130 sd
+131 sd
+132 sd
+133 sd
+134 sd
+135 sd
+253 device-mapper
+254 mdp
+osboxes@osboxes:/dev$ ls /sys/class/char_test_drv/chrnull
+dev  power  subsystem  uevent
+osboxes@osboxes:/dev$ cd /sys/class
+osboxes@osboxes:/sys/class$ ls
+ata_device     dmi             iommu         ppdev         sound
+ata_link       drm             leds          ppp           spi_host
+ata_port       drm_dp_aux_dev  mdio_bus      printer       spi_master
+backlight      extcon          mem           pwm           spi_transport
+bdi            firmware        misc          rapidio_port  thermal
+block          gpio            mmc_host      regulator     tpm
+bsg            graphics        nd            rfkill        tty
+char_test_drv  hidraw          net           rtc           vc
+devcoredump    hwmon           pci_bus       scsi_device   virtio-ports
+devfreq        i2c-adapter     phy           scsi_disk     vtconsole
+devfreq-event  i2c-dev         powercap      scsi_generic  watchdog
+dma            input           power_supply  scsi_host
+osboxes@osboxes:/sys/class$ cd ~/char_test_drv
+bash: cd: /home/osboxes/char_test_drv: No such file or directory
+osboxes@osboxes:/sys/class$ cd /char_test_drv
+bash: cd: /char_test_drv: No such file or directory
+osboxes@osboxes:/sys/class$ cd ./char_test_drv
+osboxes@osboxes:/sys/class/char_test_drv$ ls
+chrnull
+osboxes@osboxes:/sys/class/char_test_drv$ cd /
+osboxes@osboxes:/$ ls /sys/class/char_test_drv
+chrnull
+osboxes@osboxes:/$ cd /dev
+osboxes@osboxes:/dev$ ls
+agpgart          loop1               snapshot  tty33  tty7       ttyS8
+autofs           loop2               snd       tty34  tty8       ttyS9
+block            loop3               sr0       tty35  tty9       uhid
+bsg              loop4               stderr    tty36  ttyprintk  uinput
+btrfs-control    loop5               stdin     tty37  ttyS0      urandom
+bus              loop6               stdout    tty38  ttyS1      userio
+cdrom            loop7               tty       tty39  ttyS10     vcs
+cdrw             loop-control        tty0      tty4   ttyS11     vcs1
+char             mapper              tty1      tty40  ttyS12     vcs2
+chrnull          mcelog              tty10     tty41  ttyS13     vcs3
+console          mem                 tty11     tty42  ttyS14     vcs4
+core             memory_bandwidth    tty12     tty43  ttyS15     vcs5
+cpu              midi                tty13     tty44  ttyS16     vcs6
+cpu_dma_latency  mqueue              tty14     tty45  ttyS17     vcs7
+cuse             net                 tty15     tty46  ttyS18     vcsa
+disk             network_latency     tty16     tty47  ttyS19     vcsa1
+dmmidi           network_throughput  tty17     tty48  ttyS2      vcsa2
+dri              null                tty18     tty49  ttyS20     vcsa3
+dvd              port                tty19     tty5   ttyS21     vcsa4
+ecryptfs         ppp                 tty2      tty50  ttyS22     vcsa5
+fb0              psaux               tty20     tty51  ttyS23     vcsa6
+fd               ptmx                tty21     tty52  ttyS24     vcsa7
+full             pts                 tty22     tty53  ttyS25     vfio
+fuse             random              tty23     tty54  ttyS26     vga_arbiter
+hidraw0          rfkill              tty24     tty55  ttyS27     vhci
+hpet             rtc                 tty25     tty56  ttyS28     vhost-net
+hugepages        rtc0                tty26     tty57  ttyS29     vmci
+hwrng            sda                 tty27     tty58  ttyS3      vsock
+initctl          sda1                tty28     tty59  ttyS30     zero
+input            sda2                tty29     tty6   ttyS31
+kmsg             sda5                tty3      tty60  ttyS4
+lightnvm         sg0                 tty30     tty61  ttyS5
+log              sg1                 tty31     tty62  ttyS6
+loop0            shm                 tty32     tty63  ttyS7
+osboxes@osboxes:/dev$ dmesg | tail
+[21772.123556] test modules: md_exit()
+[21782.361500] test modules: md_init()
+[21846.228240] test modules: md_exit()
+[24362.382930]  Driver ”symbolDriver” is unloaded!
+[32467.904157] pcnet32 0000:02:01.0 ens33: link down
+[32477.881788] pcnet32 0000:02:01.0 ens33: link up
+[35832.204143] pcnet32 0000:02:01.0 ens33: link down
+[35842.217548] pcnet32 0000:02:01.0 ens33: link up
+[39011.573197] Hello, world
+[39126.182564] Goodbye, cruel world
+osboxes@osboxes:/dev$ cat /proc/devices
+Character devices:
+  1 mem
+  4 /dev/vc/0
+  4 tty
+  4 ttyS
+  5 /dev/tty
+  5 /dev/console
+  5 /dev/ptmx
+  5 ttyprintk
+  6 lp
+  7 vcs
+ 10 misc
+ 13 input
+ 14 sound/midi
+ 14 sound/dmmidi
+ 21 sg
+ 29 fb
+ 89 i2c
+ 99 ppdev
+108 ppp
+116 alsa
+128 ptm
+136 pts
+180 usb
+189 usb_device
+204 ttyMAX
+226 drm
+245 chr_test_driver
+246 hidraw
+247 aux
+248 bsg
+249 watchdog
+250 rtc
+251 dimmctl
+252 ndctl
+253 tpm
+254 gpiochip
+
+Block devices:
+259 blkext
+  7 loop
+  8 sd
+  9 md
+ 11 sr
+ 65 sd
+ 66 sd
+ 67 sd
+ 68 sd
+ 69 sd
+ 70 sd
+ 71 sd
+128 sd
+129 sd
+130 sd
+131 sd
+132 sd
+133 sd
+134 sd
+135 sd
+253 device-mapper
+254 mdp
+osboxes@osboxes:/dev$ sudo chmod 777 /dev/chrnull
+[sudo] password for osboxes: 
+osboxes@osboxes:/dev$ sudo echo "test message" > /dev/chrnull
+osboxes@osboxes:/dev$ $ sudo cat /dev/chrnull
+$: command not found
+osboxes@osboxes:/dev$ sudo cat /dev/chrnull
+test message
+(13 letters) 
+osboxes@osboxes:/dev$ sudo rmmod driverTest
+osboxes@osboxes:/dev$ dmesg | tail
+[35842.217548] pcnet32 0000:02:01.0 ens33: link up
+[39011.573197] Hello, world
+[39126.182564] Goodbye, cruel world
+[41822.303982] Character driver: open()
+[41822.344609] Received 13 characters from the user
+[41822.350923] Character driver: close()
+[41874.971010] Character driver: open()
+[41874.971024] Sent 27 characters to the user
+[41874.971563] Sent 0 characters to the user
+[41874.971592] Character driver: close()
+osboxes@osboxes:/dev$ sudo rm -i /dev/chrnull
+rm: cannot remove '/dev/chrnull': No such file or directory
+osboxes@osboxes:/dev$ sudo cat /dev/chrnull
+cat: /dev/chrnull: No such file or directory
+osboxes@osboxes:/dev$ ls
+agpgart          loop1               shm       tty31  tty61      ttyS4
+autofs           loop2               snapshot  tty32  tty62      ttyS5
+block            loop3               snd       tty33  tty63      ttyS6
+bsg              loop4               sr0       tty34  tty7       ttyS7
+btrfs-control    loop5               stderr    tty35  tty8       ttyS8
+bus              loop6               stdin     tty36  tty9       ttyS9
+cdrom            loop7               stdout    tty37  ttyprintk  uhid
+cdrw             loop-control        tty       tty38  ttyS0      uinput
+char             mapper              tty0      tty39  ttyS1      urandom
+console          mcelog              tty1      tty4   ttyS10     userio
+core             mem                 tty10     tty40  ttyS11     vcs
+cpu              memory_bandwidth    tty11     tty41  ttyS12     vcs1
+cpu_dma_latency  midi                tty12     tty42  ttyS13     vcs2
+cuse             mqueue              tty13     tty43  ttyS14     vcs3
+disk             net                 tty14     tty44  ttyS15     vcs4
+dmmidi           network_latency     tty15     tty45  ttyS16     vcs5
+dri              network_throughput  tty16     tty46  ttyS17     vcs6
+dvd              null                tty17     tty47  ttyS18     vcs7
+ecryptfs         port                tty18     tty48  ttyS19     vcsa
+fb0              ppp                 tty19     tty49  ttyS2      vcsa1
+fd               psaux               tty2      tty5   ttyS20     vcsa2
+full             ptmx                tty20     tty50  ttyS21     vcsa3
+fuse             pts                 tty21     tty51  ttyS22     vcsa4
+hidraw0          random              tty22     tty52  ttyS23     vcsa5
+hpet             rfkill              tty23     tty53  ttyS24     vcsa6
+hugepages        rtc                 tty24     tty54  ttyS25     vcsa7
+hwrng            rtc0                tty25     tty55  ttyS26     vfio
+initctl          sda                 tty26     tty56  ttyS27     vga_arbiter
+input            sda1                tty27     tty57  ttyS28     vhci
+kmsg             sda2                tty28     tty58  ttyS29     vhost-net
+lightnvm         sda5                tty29     tty59  ttyS3      vmci
+log              sg0                 tty3      tty6   ttyS30     vsock
+loop0            sg1                 tty30     tty60  ttyS31     zero
+osboxes@osboxes:/dev$ cat /proc/devices
+Character devices:
+  1 mem
+  4 /dev/vc/0
+  4 tty
+  4 ttyS
+  5 /dev/tty
+  5 /dev/console
+  5 /dev/ptmx
+  5 ttyprintk
+  6 lp
+  7 vcs
+ 10 misc
+ 13 input
+ 14 sound/midi
+ 14 sound/dmmidi
+ 21 sg
+ 29 fb
+ 89 i2c
+ 99 ppdev
+108 ppp
+116 alsa
+128 ptm
+136 pts
+180 usb
+189 usb_device
+204 ttyMAX
+226 drm
+246 hidraw
+247 aux
+248 bsg
+249 watchdog
+250 rtc
+251 dimmctl
+252 ndctl
+253 tpm
+254 gpiochip
+
+Block devices:
+259 blkext
+  7 loop
+  8 sd
+  9 md
+ 11 sr
+ 65 sd
+ 66 sd
+ 67 sd
+ 68 sd
+ 69 sd
+ 70 sd
+ 71 sd
+128 sd
+129 sd
+130 sd
+131 sd
+132 sd
+133 sd
+134 sd
+135 sd
+253 device-mapper
+254 mdp
+osboxes@osboxes:/dev$ 
+

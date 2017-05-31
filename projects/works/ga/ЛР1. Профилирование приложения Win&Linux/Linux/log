@@ -1,0 +1,297 @@
+osboxes@osboxes:~/Documents/DisksInfo$ gcc -o DisksInfo DisksInfo.cpp
+osboxes@osboxes:~/Documents/DisksInfo$ ./DisksInfo
+Total number of bytes -> 102.1224 
+Number of free bytes -> 97.0828 
+Number of busy bytes -> 5.0395 
+
+osboxes@osboxes:~/Documents/DisksInfo$ strace -c DisksInfo.cpp
+strace: Can't stat 'DisksInfo.cpp': No such file or directory
+osboxes@osboxes:~/Documents/DisksInfo$ strace -c DisksInfo
+strace: Can't stat 'DisksInfo': No such file or directory
+osboxes@osboxes:~/Documents/DisksInfo$ ^C
+osboxes@osboxes:~/Documents/DisksInfo$ ./DisksInfo
+Total number of bytes -> 102.1224 
+Number of free bytes -> 97.0828 
+Number of busy bytes -> 5.0396 
+
+osboxes@osboxes:~/Documents/DisksInfo$ strace -c ./DisksInfo
+Total number of bytes -> 102.1224 
+Number of free bytes -> 97.0827 
+Number of busy bytes -> 5.0397 
+
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+  0.00    0.000000           0         2           read
+  0.00    0.000000           0         3           write
+  0.00    0.000000           0         2           open
+  0.00    0.000000           0         2           close
+  0.00    0.000000           0         4           fstat
+  0.00    0.000000           0         8           mmap
+  0.00    0.000000           0         4           mprotect
+  0.00    0.000000           0         1           munmap
+  0.00    0.000000           0         3           brk
+  0.00    0.000000           0         3         3 access
+  0.00    0.000000           0         1           execve
+  0.00    0.000000           0         1           statfs
+  0.00    0.000000           0         1           arch_prctl
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.000000                    35         3 total
+osboxes@osboxes:~/Documents/DisksInfo$ strace -Tt ./DisksInfo
+21:35:37 execve("./DisksInfo", ["./DisksInfo"], [/* 60 vars */]) = 0 <0.000203>
+21:35:37 brk(NULL)                      = 0xa95000 <0.000008>
+21:35:37 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory) <0.000011>
+21:35:37 mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fb5b1931000 <0.000044>
+21:35:37 access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory) <0.000018>
+21:35:37 open("/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3 <0.000022>
+21:35:37 fstat(3, {st_mode=S_IFREG|0644, st_size=87645, ...}) = 0 <0.000010>
+21:35:37 mmap(NULL, 87645, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7fb5b191b000 <0.000016>
+21:35:37 close(3)                       = 0 <0.000010>
+21:35:37 access("/etc/ld.so.nohwcap", F_OK) = -1 ENOENT (No such file or directory) <0.000011>
+21:35:37 open("/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3 <0.000020>
+21:35:37 read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0P\t\2\0\0\0\0\0"..., 832) = 832 <0.000013>
+21:35:37 fstat(3, {st_mode=S_IFREG|0755, st_size=1864888, ...}) = 0 <0.000010>
+21:35:37 mmap(NULL, 3967392, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fb5b1345000 <0.000023>
+21:35:37 mprotect(0x7fb5b1504000, 2097152, PROT_NONE) = 0 <0.000031>
+21:35:37 mmap(0x7fb5b1704000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1bf000) = 0x7fb5b1704000 <0.000037>
+21:35:37 mmap(0x7fb5b170a000, 14752, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fb5b170a000 <0.000021>
+21:35:37 close(3)                       = 0 <0.000013>
+21:35:37 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fb5b191a000 <0.000018>
+21:35:37 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fb5b1919000 <0.000015>
+21:35:37 mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fb5b1918000 <0.000009>
+21:35:37 arch_prctl(ARCH_SET_FS, 0x7fb5b1919700) = 0 <0.000008>
+21:35:37 mprotect(0x7fb5b1704000, 16384, PROT_READ) = 0 <0.000021>
+21:35:37 mprotect(0x600000, 4096, PROT_READ) = 0 <0.000013>
+21:35:37 mprotect(0x7fb5b1933000, 4096, PROT_READ) = 0 <0.000018>
+21:35:37 munmap(0x7fb5b191b000, 87645)  = 0 <0.000037>
+21:35:37 statfs("/home/osboxes/Desktop/fstat/file_name.txt", {f_type="EXT2_SUPER_MAGIC", f_bsize=4096, f_blocks=24932218, f_bfree=23701826, f_bavail=22429558, f_files=6348800, f_ffree=6123479, f_fsid={-1399427635, 1445254583}, f_namelen=255, f_frsize=4096, f_flags=4128}) = 0 <0.000015>
+21:35:37 fstat(1, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 3), ...}) = 0 <0.000008>
+21:35:37 brk(NULL)                      = 0xa95000 <0.000007>
+21:35:37 brk(0xab6000)                  = 0xab6000 <0.000008>
+21:35:37 write(1, "Total number of bytes -> 102.122"..., 35Total number of bytes -> 102.1224 
+) = 35 <0.000011>
+21:35:37 write(1, "Number of free bytes -> 97.0827 "..., 33Number of free bytes -> 97.0827 
+) = 33 <0.000010>
+21:35:37 write(1, "Number of busy bytes -> 5.0397 \n", 32Number of busy bytes -> 5.0397 
+) = 32 <0.000011>
+21:35:37 fstat(0, {st_mode=S_IFCHR|0620, st_rdev=makedev(136, 3), ...}) = 0 <0.000007>
+21:35:37 read(0,  
+"\n", 1024)            = 1 <13.673328>
+21:35:50 exit_group(0)                  = ?
+21:35:50 +++ exited with 0 +++
+osboxes@osboxes:~/Documents/DisksInfo$ strace -e trace=write ./DisksInfo
+write(1, "Total number of bytes -> 102.122"..., 35Total number of bytes -> 102.1224 
+) = 35
+write(1, "Number of free bytes -> 97.0827 "..., 33Number of free bytes -> 97.0827 
+) = 33
+write(1, "Number of busy bytes -> 5.0397 \n", 32Number of busy bytes -> 5.0397 
+) = 32
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+--- SIGWINCH {si_signo=SIGWINCH, si_code=SI_KERNEL} ---
+
++++ exited with 0 +++
+osboxes@osboxes:~/Documents/DisksInfo$ ltrace -c ./DisksInfo
+Total number of bytes -> 102.1224 
+Number of free bytes -> 97.0824 
+Number of busy bytes -> 5.0399 
+ 
+% time     seconds  usecs/call     calls      function
+------ ----------- ----------- --------- --------------------
+ 99.99    6.718126     6718126         1 getchar
+  0.01    0.000779         259         3 printf
+  0.00    0.000203         203         1 statfs
+------ ----------- ----------- --------- --------------------
+100.00    6.719108                     5 total
+osboxes@osboxes:~/Documents/DisksInfo$ ltrace -Tttt ./DisksInfo
+1496092217.934952 __libc_start_main(0x400626, 1, 0x7ffc1cfb7b68, 0x400800 <unfinished ...>
+1496092217.936015 statfs("/home/osboxes/Desktop/fstat/file"..., 0x7ffc1cfb7a00) = 0 <0.003432>
+1496092217.939702 printf("Total number of bytes -> %.4f \n", 102.122365Total number of bytes -> 102.1224 
+) = 35 <0.001971>
+1496092217.941873 printf("Number of free bytes -> %.4f \n", 97.082393Number of free bytes -> 97.0824 
+) = 33 <0.003060>
+1496092217.945236 printf("Number of busy bytes -> %.4f \n", 5.039972Number of busy bytes -> 5.0400 
+) = 32 <0.002268>
+1496092217.947710 getchar(1, 2, 0x7f3a63e11780, 0x7fffffe1 <no return ...>
+1496092221.292617 --- SIGWINCH (Window changed) ---
+1496092221.340671 --- SIGWINCH (Window changed) ---
+1496092221.370133 --- SIGWINCH (Window changed) ---
+1496092221.390504 --- SIGWINCH (Window changed) ---
+1496092221.427549 --- SIGWINCH (Window changed) ---
+1496092221.451911 --- SIGWINCH (Window changed) ---
+1496092221.470027 --- SIGWINCH (Window changed) ---
+1496092221.517758 --- SIGWINCH (Window changed) ---
+1496092221.577276 --- SIGWINCH (Window changed) ---
+1496092221.638087 --- SIGWINCH (Window changed) ---
+1496092221.695088 --- SIGWINCH (Window changed) ---
+1496092221.741788 --- SIGWINCH (Window changed) ---
+
+1496092223.688871 <... getchar resumed> )          = 10 <5.741125>
+1496092223.689043 +++ exited (status 0) +++
+osboxes@osboxes:~/Documents/DisksInfo$ ltrace -Tttt ./DisksInfo
+1496092237.922655 __libc_start_main(0x400626, 1, 0x7ffd7af4ee08, 0x400800 <unfinished ...>
+1496092237.923704 statfs("/home/osboxes/Desktop/fstat/file"..., 0x7ffd7af4eca0) = 0 <0.001856>
+1496092237.925739 printf("Total number of bytes -> %.4f \n", 102.122365Total number of bytes -> 102.1224 
+) = 35 <0.001843>
+1496092237.927829 printf("Number of free bytes -> %.4f \n", 97.082393Number of free bytes -> 97.0824 
+) = 33 <0.002775>
+1496092237.930770 printf("Number of busy bytes -> %.4f \n", 5.039972Number of busy bytes -> 5.0400 
+) = 32 <0.001234>
+1496092237.932156 getchar(1, 2, 0x7fc7985d1780, 0x7fffffe1
+) = 10 <1.351348>
+1496092239.283704 +++ exited (status 0) +++
+osboxes@osboxes:~/Documents/DisksInfo$ gprof
+a.out: No such file or directory
+osboxes@osboxes:~/Documents/DisksInfo$ make clean
+make: *** No rule to make target 'clean'. Stop.
+osboxes@osboxes:~/Documents/DisksInfo$ g++ -Wall -std=c99 -pg DisksInfo.cpp -o DisksInfo
+cc1plus: warning: command line option ‘-std=c99’ is valid for C/ObjC but not for C++
+DisksInfo.cpp: In function ‘int main()’:
+DisksInfo.cpp:21:9: warning: unused variable ‘c’ [-Wunused-variable]
+     int c = getchar ();
+         ^
+osboxes@osboxes:~/Documents/DisksInfo$ g++ -Wall -pg DisksInfo.cpp -o DisksInfo
+DisksInfo.cpp: In function ‘int main()’:
+DisksInfo.cpp:21:9: warning: unused variable ‘c’ [-Wunused-variable]
+     int c = getchar ();
+         ^
+osboxes@osboxes:~/Documents/DisksInfo$ g++ -Wall -pg DisksInfo.cpp -o DisksInfo
+osboxes@osboxes:~/Documents/DisksInfo$ ./DisksInfo
+Total number of bytes -> 102.1224 
+Number of free bytes -> 97.0823 
+Number of busy bytes -> 5.0401 
+osboxes@osboxes:~/Documents/DisksInfo$ ls -l
+total 20
+-rwxrwxr-x 1 osboxes osboxes 9144 May 29 22:22 DisksInfo
+-rw-rw-r-- 1 osboxes osboxes  628 May 29 22:22 DisksInfo.cpp
+-rw-rw-r-- 1 osboxes osboxes  549 May 29 22:22 gmon.out
+osboxes@osboxes:~/Documents/DisksInfo$ gprof DisksInfo gmon.out > profile-data.txt
+osboxes@osboxes:~/Documents/DisksInfo$ apt-get install binutils
+E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)
+E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
+osboxes@osboxes:~/Documents/DisksInfo$ sudo apt-get install binutils
+[sudo] password for osboxes: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+binutils is already the newest version (2.26.1-1ubuntu1~16.04.3).
+The following package was automatically installed and is no longer required:
+  snap-confine
+Use 'sudo apt autoremove' to remove it.
+0 to upgrade, 0 to newly install, 0 to remove and 0 not to upgrade.
+osboxes@osboxes:~/Documents/DisksInfo$ gprof ./DisksInfo gmon.out > profile-data.txt 
+osboxes@osboxes:~/Documents/DisksInfo$ g++ -Wall -pg DisksInfo.cpp -o DisksInfo
+DisksInfo.cpp: In function ‘int main()’:
+DisksInfo.cpp:21:9: warning: unused variable ‘c’ [-Wunused-variable]
+     int c = getchar();
+         ^
+osboxes@osboxes:~/Documents/DisksInfo$ ./DisksInfo
+Total number of bytes -> 102.1224 
+Number of free bytes -> 97.0821 
+Number of busy bytes -> 5.0403 
+
+osboxes@osboxes:~/Documents/DisksInfo$ gprof DisksInfo gmon.out > profile-data
+osboxes@osboxes:~/Documents/DisksInfo$ cat profile-data
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+ no time accumulated
+
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+
+Copyright (C) 2012-2015 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+osboxes@osboxes:~/Documents/DisksInfo$ g++ -o DisksInfo DisksInfo.cpp
+osboxes@osboxes:~/Documents/DisksInfo$ ./DisksInfo
+Total number of bytes -> 102.1224 
+Number of free bytes -> 97.0819 
+Number of busy bytes -> 5.0404 
+
+osboxes@osboxes:~/Documents/DisksInfo$ valgrind DisksInfo
+The program 'valgrind' is currently not installed. You can install it by typing:
+sudo apt install valgrind
+osboxes@osboxes:~/Documents/DisksInfo$ sudo apt install valgrind
+osboxes@osboxes:~/Documents/DisksInfo$ valgrind ./DisksInfo
+==34801== Memcheck, a memory error detector
+==34801== Copyright (C) 2002-2015, and GNU GPL'd, by Julian Seward et al.
+==34801== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==34801== Command: ./DisksInfo
+==34801== 
+Total number of bytes -> 102.1224 
+Number of free bytes -> 96.4832 
+Number of busy bytes -> 5.6391 
+
+==34801== 
+==34801== HEAP SUMMARY:
+==34801==     in use at exit: 0 bytes in 0 blocks
+==34801==   total heap usage: 2 allocs, 2 frees, 2,048 bytes allocated
+==34801== 
+==34801== All heap blocks were freed -- no leaks are possible
+==34801== 
+==34801== For counts of detected and suppressed errors, rerun with: -v
+==34801== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+osboxes@osboxes:~/Documents/DisksInfo$ valgrind —tool=memcheck —leak-check=yes './DisksInfo’
+osboxes@osboxes:~/Documents/DisksInfo$ valgrind —tool=memcheck —leak-check=yes ‘./DisksInfo’
+valgrind: —tool=memcheck: command not found
+osboxes@osboxes:~/Documents/DisksInfo$ valgrind —leak-check=yes ‘./DisksInfo’valgrind: —leak-check=yes: command not found
+osboxes@osboxes:~/Documents/DisksInfo$ ^C
+osboxes@osboxes:~/Documents/DisksInfo$ 

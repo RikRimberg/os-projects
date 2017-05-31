@@ -1,0 +1,21 @@
+[Unit]
+Description=Information about disks
+After=network.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Type=simple
+
+ExecStart="/home/osboxes/Documents/Daemon/DisksInfoDaemon.bin"
+RuntimeMaxSec=3600
+
+Restart=always
+RestartSec=5
+
+KillMode=process
+KillSignal=SIGTERM
+SendSIGKILL=yes
+TimeoutStopSec=5
+

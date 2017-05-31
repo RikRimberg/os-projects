@@ -1,0 +1,58 @@
+osboxes@osboxes:~/Documents/myDriver/myModule$ sudo apt-get install linux-headers-$(uname -r)
+[sudo] password for osboxes: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+linux-headers-4.8.0-53-generic is already the newest version (4.8.0-53.56~16.04.1).
+The following package was automatically installed and is no longer required:
+  snap-confine
+Use 'sudo apt autoremove' to remove it.
+0 to upgrade, 0 to newly install, 0 to remove and 0 not to upgrade.
+osboxes@osboxes:~/Documents/myDriver/myModule$ make
+make -C /lib/modules/4.8.0-53-generic/build M=/home/osboxes/Documents/myDriver/myModule modules
+make[1]: Entering directory '/usr/src/linux-headers-4.8.0-53-generic'
+Building with KERNELRELEASE = 4.8.0-53-generic
+  Building modules, stage 2.
+Building with KERNELRELEASE = 4.8.0-53-generic
+  MODPOST 1 modules
+make[1]: Leaving directory '/usr/src/linux-headers-4.8.0-53-generic'
+osboxes@osboxes:~/Documents/myDriver/myModule$ ls -l
+total 28
+-rw-rw-r-- 1 osboxes osboxes  310 May 29 18:34 Makefile
+-rw-rw-r-- 1 osboxes osboxes   63 May 29 19:46 modules.order
+-rw-rw-r-- 1 osboxes osboxes    0 May 29 13:43 Module.symvers
+-rw-rw-r-- 1 osboxes osboxes  320 May 29 18:34 moduleTest.c
+-rw-rw-r-- 1 osboxes osboxes 3976 May 29 18:35 moduleTest.ko
+-rw-rw-r-- 1 osboxes osboxes  713 May 29 18:35 moduleTest.mod.c
+-rw-rw-r-- 1 osboxes osboxes 2816 May 29 18:35 moduleTest.mod.o
+-rw-rw-r-- 1 osboxes osboxes 2024 May 29 18:35 moduleTest.o
+osboxes@osboxes:~/Documents/myDriver/myModule$ modinfo moduleTest.ko
+filename:       /home/osboxes/Documents/myDriver/myModule/moduleTest.ko
+description:    test modules
+author:         Gizzatullina Anzhela
+license:        GPL
+srcversion:     CCBC614504D918E8A07185D
+depends:        
+vermagic:       4.8.0-53-generic SMP mod_unload modversions 
+osboxes@osboxes:~/Documents/myDriver/myModule$ sudo insmod moduleTest.ko
+osboxes@osboxes:~/Documents/myDriver/myModule$ ^C
+osboxes@osboxes:~/Documents/myDriver/myModule$ lsmod | grep module
+moduleTest             16384  0
+osboxes@osboxes:~/Documents/myDriver/myModule$ ^C
+osboxes@osboxes:~/Documents/myDriver/myModule$ rmmod moduleTest.ko
+rmmod: ERROR: ../libkmod/libkmod-module.c:793 kmod_module_remove_module() could not remove 'moduleTest': Operation not permitted
+rmmod: ERROR: could not remove module moduleTest.ko: Operation not permitted
+osboxes@osboxes:~/Documents/myDriver/myModule$ sudo rmmod moduleTest.ko
+osboxes@osboxes:~/Documents/myDriver/myModule$ dmesg | Test
+No command 'Test' found, did you mean:
+ Command 'test' from package 'coreutils' (main)
+Test: command not found
+osboxes@osboxes:~/Documents/myDriver/myModule$ dmesg | grep Test
+osboxes@osboxes:~/Documents/myDriver/myModule$ dmesg | grep test
+[    1.449267] scsi target32:0:0: Domain Validation skipping write tests
+[21649.421788] test modules: md_init()
+[21772.123556] test modules: md_exit()
+[21782.361500] test modules: md_init()
+[21846.228240] test modules: md_exit()
+osboxes@osboxes:~/Documents/myDriver/myModule$ 
+
